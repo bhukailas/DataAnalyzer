@@ -1,11 +1,15 @@
 package com.target.vo;
 
-import java.time.LocalDateTime;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Comment {
 	private String body;
 	private int userId;
-	private LocalDateTime dateTime;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date dateTime;
 	
 	public String getBody() {
 		return body;
@@ -19,10 +23,10 @@ public class Comment {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public LocalDateTime getDateTime() {
+	public Date getDateTime() {
 		return dateTime;
 	}
-	public void setDateTime(LocalDateTime dateTime) {
+	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}
 }

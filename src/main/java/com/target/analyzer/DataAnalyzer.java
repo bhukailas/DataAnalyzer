@@ -26,7 +26,7 @@ public class DataAnalyzer {
 		this.badWordsDict = badWordsDict;
 	}
 	
-	public CommentAnalysis hasObjectionableContent(Comment comment) {
+	public CommentAnalysis analyze(Comment comment) {
 		String body = comment.getBody();
 		List<String> badWords = new ArrayList<>();
 		StringTokenizer st = new StringTokenizer(body, delimiter);
@@ -40,7 +40,10 @@ public class DataAnalyzer {
 		
 		CommentAnalysis analysis = new CommentAnalysis();
 		analysis.setObjectinalWords(badWords);
-		analysis.setMessage("Comment has objectionalWords");
-		return new CommentAnalysis();
+		if(!badWords.isEmpty()) {
+			analysis.setMessage("Comment has objectional Words");
+		}
+		analysis.setComment(comment);
+		return analysis;
 	}
 }

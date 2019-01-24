@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import com.target.vo.CommentAnalysis;
 
 @RestController
 @RequestMapping("/api")
+@Service
 public class DataAnalyzerServiceImpl implements DataAnalyzerService {
 	public static final Logger logger = LoggerFactory.getLogger(DataAnalyzerServiceImpl.class);
 	
@@ -31,9 +33,9 @@ public class DataAnalyzerServiceImpl implements DataAnalyzerService {
 	@RequestMapping(value = "/commentValidation", method=RequestMethod.POST, produces="application/json")
 	public ResponseEntity<?> analyzeContetntForObjectionalWords(@RequestBody Comment comment) {
 		logger.debug("Comment : {}", comment);
-		CommentAnalysis analysis = new CommentAnalysis();
+		CommentAnalysis analysis = analyzer.analyze(comment);
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<CommentAnalysis>(analysis, headers, HttpStatus.CREATED);
+        return new ResponseEntity<CommentAnalysis>(analysis, headers, HttpStatus.OK);
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.target.vo;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import com.google.gson.Gson;
 
@@ -10,7 +10,7 @@ public class JSONutility {
 		Comment comment = new Comment();
 		comment.setBody("body of comment");
 		comment.setUserId(1234);
-		comment.setDateTime(LocalDateTime.now());
+		comment.setDateTime(new Date());
 		System.out.println(gson.toJson(comment));
 	}
 }
